@@ -14,7 +14,7 @@ namespace ORM_Dapper
                    .AddJsonFile("appsettings.json")
                    .Build();
             var connString = config.GetConnectionString("DefaultConnection");
-            //IDbConnection conn = new MySqlConnection(connString);
+            IDbConnection conn = new MySqlConnection(connString);
 
             ////var repo = new DepartmentRepository(connString); //Without Dapper
 
@@ -36,7 +36,7 @@ namespace ORM_Dapper
             //    x.AddTransient<IDepartmentRepository, DapperDepartmentRepository>();
             //});
             //var repo = container.GetService<IDepartmentRepository>();
-            IDbConnection conn = new MySqlConnection(connString);
+
             var repo = new DapperDepartmentRepository(conn);
             var departments = repo.GetAllDepartments();
 
