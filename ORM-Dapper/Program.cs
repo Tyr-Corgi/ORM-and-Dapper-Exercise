@@ -36,7 +36,8 @@ namespace ORM_Dapper
             //    x.AddTransient<IDepartmentRepository, DapperDepartmentRepository>();
             //});
             //var repo = container.GetService<IDepartmentRepository>();
-
+         
+            #region Department Section
             var repo = new DapperDepartmentRepository(conn);
             var departments = repo.GetAllDepartments();
 
@@ -45,6 +46,23 @@ namespace ORM_Dapper
             {
                 Console.WriteLine($"{dept.DepartmentID}  -- {dept.Name}");
             }
-        } 
+            #endregion
+
+            var productRepository = new DapperProductRepository(conn);
+            var products = productRepository.GetAllProducts();
+            foreach (var product in products)
+            {
+                Console.WriteLine(product.ProductID);
+                Console.WriteLine(product.Name);
+                Console.WriteLine(product.Price);
+                Console.WriteLine(product.CategoryID);
+                Console.WriteLine(product.OnSale);
+                Console.WriteLine(product.StockLevel);
+
+
+            }
+        }
+
+
     }
 }
